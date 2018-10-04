@@ -13,7 +13,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs-extra'))
 const isProduction = () => {
-	return enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render'
+	return (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify
 }
 
 // * enduro dependencies
@@ -23,8 +23,8 @@ const logger = require(enduro.enduro_path + '/libs/logger')
 js_handler.prototype.init = function (gulp, browser_sync) {
 
 	// stores task name
-	const js_handler_task_name = 'js';
-	gulp.task(js_handler_task_name, function() {
+	const js_handler_task_name = 'js'
+	gulp.task(js_handler_task_name, function () {
 		if (enduro.config.babel || enduro.config.uglify) {
 			logger.timestamp('JS compiling started', 'enduro_events')
 			const babelConfig = enduro.config.babel || {
@@ -61,7 +61,7 @@ js_handler.prototype.init = function (gulp, browser_sync) {
 		}
 	})
 
-	return js_handler_task_name;
+	return js_handler_task_name
 }
 
 module.exports = new js_handler()
