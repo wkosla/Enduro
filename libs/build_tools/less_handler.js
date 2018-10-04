@@ -36,7 +36,7 @@ less_handler.prototype.init = function (gulp, browser_sync) {
 			.pipe(gulpif(isProduction(), sourcemaps.init()))
 			.pipe(less({
 				paths: enduro.config.less && enduro.config.less.paths || [],
-				plugins: [ autoprefixer, (isProduction ? cleanCSS : null) ]
+				plugins: [ autoprefixer, (isProduction() ? cleanCSS : null) ]
 			}))
 			.on('error', function (err) {
 				logger.err_blockStart('Less error')
