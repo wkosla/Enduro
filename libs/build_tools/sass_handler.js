@@ -31,9 +31,9 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 
 		return gulp.src(enduro.project_path + '/assets/css/*.scss')
 			.pipe(bulkSass())
-			.pipe(gulpif(!isProduction, sourcemaps.init()))
+			.pipe(gulpif(!isProduction(), sourcemaps.init()))
 			.pipe(sass({
-				outputStyle: isProduction ? 'compressed' : 'nested'
+				outputStyle: isProduction() ? 'compressed' : 'nested'
 			}))
 			.on('error', function (err) {
 				logger.err_blockStart('Sass error')
@@ -45,11 +45,11 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 				browsers: ['last 2 versions'],
 				cascade: false,
 			}))
-			.pipe(gulpif(!isProduction, sourcemaps.write()))
+			.pipe(gulpif(!isProduction(), sourcemaps.write()))
 			.pipe(gulp.dest(enduro.project_path + '/' + enduro.config.build_folder + '/assets/css'))
 			.pipe(browser_sync.stream())
 			.on('end', () => {
-				console.log(enduro.flags)
+				console.log(isProduction())
 				logger.timestamp('Sass compiling finished', 'enduro_events')
 			})
 

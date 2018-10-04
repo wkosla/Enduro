@@ -48,7 +48,7 @@ js_handler.prototype.init = function (gulp, browser_sync) {
 					logger.timestamp('JS compiling finished', 'enduro_events')
 				})
 				.pipe(gulpif(enduro.config.uglify, rename({ suffix: '.min' })))
-				.pipe(gulpif(isProduction, uglify()))
+				.pipe(gulpif(isProduction(), uglify()))
 				.pipe(gulp.dest(enduro.project_path + '/' + enduro.config.build_folder + '/assets/js'))
 		} else {
 			logger.timestamp('js compiling not enabled, add babel options to enduro.json to enable')
