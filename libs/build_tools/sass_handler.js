@@ -13,7 +13,7 @@ const gulpif = require('gulp-if')
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const isProduction = () => {
-  return enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render'
+	return enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render'
 }
 
 // * enduro dependencies
@@ -33,8 +33,8 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 			.pipe(bulkSass())
 			.pipe(gulpif(!isProduction, sourcemaps.init()))
 			.pipe(sass({
-        outputStyle: isProduction ? 'compressed' : 'normal'
-      }))
+				outputStyle: isProduction ? 'compressed' : 'normal'
+			}))
 			.on('error', function (err) {
 				logger.err_blockStart('Sass error')
 				logger.err(err.message)
