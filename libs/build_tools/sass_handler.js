@@ -49,7 +49,6 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 			.pipe(gulp.dest(enduro.project_path + '/' + enduro.config.build_folder + '/assets/css'))
 			.pipe(browser_sync.stream())
 			.on('end', () => {
-				console.log(isProduction())
 				logger.timestamp('Sass compiling finished', 'enduro_events')
 			})
 
