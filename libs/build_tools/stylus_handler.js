@@ -32,7 +32,7 @@ stylus_handler.prototype.init = function (gulp, browser_sync) {
 			.pipe(gulpif(!isProduction(), sourcemaps.init()))
 			.pipe(stylus({
 				use: [ autoprefixer('last 5 versions') ],
-				compress: isProduction() ? true : false
+				compress: isProduction()
 			}))
 			.on('error', function (err) {
 				logger.err_blockStart('Stylus error')
