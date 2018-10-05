@@ -13,7 +13,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs-extra'))
 const isProduction = () => {
-	return (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify
+	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
 
 // * enduro dependencies

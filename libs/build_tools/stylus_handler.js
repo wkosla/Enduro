@@ -12,7 +12,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('autoprefixer-stylus')
 const gulpif = require('gulp-if')
 const isProduction = () => {
-	return (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify
+	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
 
 // * enduro dependencies

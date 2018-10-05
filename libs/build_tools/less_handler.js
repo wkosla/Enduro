@@ -7,7 +7,7 @@ const LessCleanCSS = require('less-plugin-clean-css')
 const cleanCSS = new LessCleanCSS({ advanced: true })
 const gulpif = require('gulp-if')
 const isProduction = () => {
-	return (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify
+	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
 
 // * enduro dependencies
