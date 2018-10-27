@@ -12,6 +12,7 @@ const sass = require('gulp-sass')
 const gulpif = require('gulp-if')
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
+const wait = require('gulp-wait')
 const isProduction = () => {
 	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
@@ -31,7 +32,8 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 
 		return gulp.src(enduro.project_path + '/assets/css/*.scss')
 			.pipe(bulkSass())
-			.pipe(gulpif(!isProduction(), sourcemaps.init()))
+      .pipe(gulpif(!isProduction(), sourcemaps.init()))
+      .pipe(wait(500))
 			.pipe(sass({
 				outputStyle: isProduction() ? 'compressed' : 'nested'
 			}))
