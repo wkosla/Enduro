@@ -89,7 +89,7 @@ assets_copier.prototype.watch = function (gulp, browser_sync) {
 // *	static assets folders
 // * ———————————————————————————————————————————————————————— * //
 assets_copier.prototype.get_copy_from_and_copy_to_pairs = () => {
-	return static_locations_to_watch
+	return _.union(static_locations_to_watch, enduro.config.static_assets_paths || [])
 		.map((static_location) => {
 			return {
 				copy_from: path.join(enduro.project_path, static_location),
