@@ -19,9 +19,6 @@ const isProduction = () => {
 	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
 
-console.log(enduro.config.purgecss)
-console.log(enduro.config.project_name)
-
 // * enduro dependencies
 const logger = require(enduro.enduro_path + '/libs/logger')
 
@@ -34,6 +31,9 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 	gulp.task(sass_handler_task_name, function () {
 
 		logger.timestamp('Sass compiling started', 'enduro_events')
+
+    console.log(enduro.config.purgecss)
+    console.log(enduro.config.project_name)
 
 		return gulp.src(enduro.project_path + '/assets/css/*.scss')
 			.pipe(bulkSass())
