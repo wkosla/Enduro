@@ -52,7 +52,10 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 				browsers: ['last 2 versions'],
 				cascade: false,
 			}))
-			.pipe(gulpif(!isProduction(), sourcemaps.write()))
+      .pipe(gulpif(!isProduction(), sourcemaps.write()))
+      .pipe(gulpif(enduro.config.purgecss, purgecss({
+        content: [enduro.project_path + '/' + enduro.config.build_folder + '/**/*.html']
+      })))
 			.pipe(gulp.dest(enduro.project_path + '/' + enduro.config.build_folder + '/assets/css'))
 			.pipe(browser_sync.stream())
 			.on('end', () => {
