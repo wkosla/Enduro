@@ -13,9 +13,12 @@ const gulpif = require('gulp-if')
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
 const wait = require('gulp-wait')
+const purgecss = require('gulp-purgecss')
 const isProduction = () => {
 	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
+
+console.log(enduro.config.purgeCSS)
 
 // * enduro dependencies
 const logger = require(enduro.enduro_path + '/libs/logger')
