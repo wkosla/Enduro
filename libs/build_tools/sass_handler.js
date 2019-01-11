@@ -32,9 +32,6 @@ sass_handler.prototype.init = function (gulp, browser_sync) {
 
 		logger.timestamp('Sass compiling started', 'enduro_events')
 
-    console.log(enduro.config.purgecss)
-    console.log(enduro.config.project_name)
-
 		return gulp.src(enduro.project_path + '/assets/css/*.scss')
 			.pipe(bulkSass())
       .pipe(gulpif(!isProduction(), sourcemaps.init()))
