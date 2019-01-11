@@ -18,7 +18,7 @@ const isProduction = () => {
 	return Object.keys(enduro.flags).length ? (enduro.flags._[0] === 'start' || enduro.flags._[0] === 'render') && !enduro.flags.nominify : false
 }
 
-console.log(enduro.config.purgeCSS)
+console.log(enduro.config)
 
 // * enduro dependencies
 const logger = require(enduro.enduro_path + '/libs/logger')
